@@ -33,8 +33,19 @@
         height:0px;         /* つまみの高さ */
         background: #444;     /* 色 */
         border-radius: 50%;   /* まるい形 */
-        margin-top: -5px;     /* 軌道と位置合わせ */
+        margin-top: -5px;     /* 軌道と位置合わせ */}
+    #top4 {
+  display: flex;
+  gap: 0px;
 }
+.top-card {
+  padding: 2px 2px;
+  border-radius: 6px;
+  background: #ffffff;
+  font-size: 32px; /* ←ここ好きに変えて */
+  font-weight: 700; /* 太くしたければ追加 */
+}
+
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -180,8 +191,12 @@
 
   const container = document.getElementById("top4");
   container.innerHTML = top4
-    .map(item => `<p>${item.label}：${item.value}</p>`)
-    .join("");
+  .map(item => `<div class="top-card">${item.label}</div>`)
+  .join("");
+
+
+
+
 }
 
 
