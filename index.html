@@ -3,11 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Slider Radar Template</title>
+  <title>円性格診断</title>
   <style>
     body {
-      font-family: sans-serif;
-      padding: 20px;
+      body {
+  font-family:
+    "ヒラギノ角ゴ ProN",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic Medium",
+    "游ゴシック Medium",
+    "メイリオ",
+    sans-serif;
+  line-height: 1.8;
+}
     }
     .question {
       margin-bottom: 20px;
@@ -45,6 +53,10 @@
   font-size: 32px; /* ←ここ好きに変えて */
   font-weight: 700; /* 太くしたければ追加 */
 }
+#questions {
+  margin-bottom:400px;
+}
+
 
  .detail-block {
     margin-bottom: 20px;
@@ -83,22 +95,45 @@
   white-space: pre-line;
 }
 
+.result-area {
+  background: #fff;
+  padding: 24px;
+  margin-top: 40px;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+#top4 {
+  margin: 30px auto;   /* これだけで真ん中に来る */
+  padding: 20px;
+  width: fit-content;  /* 必要な分だけの横幅にする */
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  text-align: center;
+  font-size: 1.2rem;
+  line-height: 1.8;
+}
+
+
+
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <h1>開発用診断ページ</h1>
   <h1>質問</h1>
 
   <!-- 12質問 -->
   <div id="questions"></div>
-
+  <div class="result-area">
   <h2>結果</h2>
   <canvas id="chart" width="300" height="300"></canvas>
-  <h2>上位４つを表示</h2>
   <div id ="top4"></div>
   <div id="detail"></div>
   <div class="desc"></div>
+  </div>
 
 
   <script>
