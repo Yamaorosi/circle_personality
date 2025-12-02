@@ -64,9 +64,10 @@ h1::after {
         margin-top: -5px;     /* 軌道と位置合わせ */}
 #top4 {
   display: flex;
-  gap: 12px;
+  flex-direction: row; /* ←これで横並び */
   justify-content: center;
-  margin: 32px 0 42px;
+  flex-wrap: nowrap; /* ←折り返し防止 */
+  gap: 8px;
 }
 
 .top-card {
@@ -83,8 +84,8 @@ h1::after {
 }
 @media (max-width: 600px) {
   #top4 {
-    flex-direction: column;   /* ← スマホで縦に並ぶ */
-    align-items: center;      /* ← 中央揃え維持 */
+    flex-direction: row; /* スマホでも横並び維持 */
+    flex-wrap: wrap;
   }
 
 .top-card:hover {
