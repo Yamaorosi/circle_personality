@@ -233,15 +233,17 @@ h1::after {
 
 
 #top4 {
-  margin: 30px auto;   /* これだけで真ん中に来る */
+  margin: 30px auto;
   padding: 28px;
-  width: fit-content;  /* 必要な分だけの横幅にする */
+  width: 100%;  /* これに変える。もしくは削除 */
+  max-width: 360px; /* 必要ならこんな制限だけつける */
   border-radius: 16px;
   box-shadow: 0 0 14px rgba(0,0,0,0.05);
   text-align: center;
   font-size: 1.2rem;
   line-height: 1.8;
 }
+
 
 .desc-text {
   font-size: 15px;
@@ -975,5 +977,6 @@ function toggleDetail(el) {
   </script>
 </body>
 </html>
+
 
 
