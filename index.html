@@ -64,13 +64,14 @@ h1::after {
         margin-top: -5px;     /* 軌道と位置合わせ */}
 #top4 {
   display: flex;
-  flex-direction: row; /* ←これで横並び */
   justify-content: center;
-  flex-wrap: nowrap; /* ←折り返し防止 */
-  gap: 8px;
+  align-items: center;
+  width: 100%;
 }
 
 .top-card {
+    margin: 0 auto;
+  text-align: center;
   font-family: 'Noto Serif JP', serif;  /*  */
   font-size: 34px;
   font-weight: 500;
@@ -85,7 +86,8 @@ h1::after {
 @media (max-width: 600px) {
   #top4 {
     flex-direction: row; /* スマホでも横並び維持 */
-    scale: 0.85; 
+    flex-wrap: wrap;
+    scale: 0.85;
   }
 
 .top-card:hover {
@@ -975,4 +977,3 @@ function toggleDetail(el) {
   </script>
 </body>
 </html>
-
