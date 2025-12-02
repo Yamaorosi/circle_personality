@@ -6,20 +6,40 @@
   <title>円性格診断</title>
   <style>
     body {
-      body {
-  font-family:
-    "ヒラギノ角ゴ ProN",
-    "Hiragino Kaku Gothic ProN",
-    "Yu Gothic Medium",
-    "游ゴシック Medium",
-    "メイリオ",
-    sans-serif;
-  line-height: 1.8;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px;
+  font-family: 'Noto Sans JP', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.7;
 }
-    }
+
+h1 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 4rpx;
+  color: #666;
+  letter-spacing: 0.03em;
+    position: relative;
+  padding-bottom: 8px;
+}
+h1::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: #6a9bb8;
+  border-radius: 5px;
+  margin-top: 8px;
+}
+
+
     .question {
-      margin-bottom: 20px;
-    }
+  font-size: 15px;
+  color: #414141;
+  margin-bottom: 4px;
+  margin-top: 12px;
+}
+
     .value-display {
       margin-left: 10px;
       font-weight: bold;
@@ -32,7 +52,7 @@
     }
     input[type="range"]::-webkit-slider-runnable-track{
       height: 10px;
-      background : #ccc ;
+      background : #ddd ;
       border-radius : 5px;
     }
     input[type="range"]::-webkit-slider-thumb {
@@ -42,17 +62,30 @@
         background: #444;     /* 色 */
         border-radius: 50%;   /* まるい形 */
         margin-top: -5px;     /* 軌道と位置合わせ */}
-    #top4 {
+#top4 {
   display: flex;
-  gap: 0px;
+  gap: 12px;
+  justify-content: center;
+  margin: 32px 0 42px;
 }
+
 .top-card {
-  padding: 2px 2px;
-  border-radius: 6px;
-  background: #ffffff;
-  font-size: 32px; /* ←ここ好きに変えて */
-  font-weight: 700; /* 太くしたければ追加 */
+  font-family: 'Noto Serif JP', serif;  /*  */
+  font-size: 34px;
+  font-weight: 600;
+  letter-spacing: 0.08em;   /* これだけで空気変わる */
+  padding: 8px 20px;
+  border-radius: 10px;
+
+  background: #fcfcfc;
+  border: 1px solid #e9e9e9; /* 影より令和 */
+  transition: transform 0.2s ease;
 }
+
+.top-card:hover {
+  transform: translateY(-2px);
+}
+
 #questions {
   margin-bottom:400px;
 }
@@ -95,6 +128,91 @@
   white-space: pre-line;
 }
 
+.result-area h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 12px;
+  letter-spacing: 0.02em;
+}
+.trait-block {
+  margin-bottom: 24px;
+}
+
+.trait-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #444;
+  margin-bottom: 6px;
+  position: relative;
+  padding-left: 10px;
+}
+
+.trait-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 1.1em;
+  background-color: #9ad0f5;  /* 好きな差し色 */
+  border-radius: 4px;
+}
+
+.trait-text {
+  line-height: 1.9;
+  font-size: 15px;
+  color: #444;
+}
+
+
+
+.section-title {
+  border-left: 4px solid #6a9bb8;
+  padding-left: 8px;
+  font-weight: 600;
+}
+
+.section-number {
+  color: #6a9bb8;
+  font-weight: 700;
+}
+
+.more-box {
+  cursor: pointer;
+  color: #6a9bb8;
+  font-size: 13px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.more-box:hover {
+  opacity: 1;
+}
+.close-button {
+  cursor: pointer;
+  color: #6a9bb8;
+  font-size: 13px;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+.close-button:hover {
+  opacity: 1;
+}
+
+
+
+
+
+.result-area p {
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+
+
 .result-area {
   background: #fff;
   padding: 24px;
@@ -102,30 +220,45 @@
   max-width: 560px;
   margin-left: auto;
   margin-right: auto;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
 }
+
+
 
 #top4 {
   margin: 30px auto;   /* これだけで真ん中に来る */
-  padding: 20px;
+  padding: 28px;
   width: fit-content;  /* 必要な分だけの横幅にする */
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  border-radius: 16px;
+  box-shadow: 0 0 14px rgba(0,0,0,0.05);
   text-align: center;
   font-size: 1.2rem;
   line-height: 1.8;
 }
 
+.desc-text {
+  font-size: 15px;
+  line-height: 1.9;
+  color: #444;
+  max-width: 520px;
+  margin: 0 auto 20px auto;
+  letter-spacing: 0.02em;
+}
+
+.desc-text p {
+  margin-bottom: 12px;
+}
 
 
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <h1>質問</h1>
+  <h1>はじまりの12問</h1>
 
   <!-- 12質問 -->
+   <br>
   <div id="questions"></div>
   <div class="result-area">
   <h2>結果</h2>
@@ -263,19 +396,23 @@
     その自由な創造性が、場に軽い風と新しい動きを広げる。<br>
     `,
     long: `
-    1. 中核<br>
-    可能性を見つけて飛び移り、新しい流れを生む。<br>
-    2. 強み<br>
-    創造性、柔軟性、行動力。<br>
-    3. 揺れ方<br>
-    散らかりすぎて収束しない。<br>
-    4. 行動傾向・価値観<br>
-    自由、好奇心、多様性。<br>
-    <br>
-    コメント<br>
-    抑えきれないほどの好奇心は生まれ持った才能。<br>
-    とにかく思いついたら実行するので世界に羽ばたけるタイプ。<br>
-    周囲を巻き込みながら軽やかに動く、自由で楽しげな気質。<br>
+      <p><span class="section-number">1.</span>
+  <span class="section-title">中核</span><br>
+    可能性を見つけて飛び移り、新しい流れを生む。</p>
+    <p><span class="section-number">2.</span>
+  <span class="section-title">強み</span><br>
+  創造性、柔軟性、行動力。</p>
+  <p><span class="section-number">3.</span>
+  <span class="section-title">揺れ方</span><br>
+  散らかりすぎて収束しない。</p><p>
+
+  <span class="section-number">4.</span>
+  <span class="section-title">行動傾向・価値観</span><br>
+  自由、好奇心、多様性。</p><p>
+     <span class="section-title">コメント</span><br>
+  抑えきれないほどの好奇心は生まれ持った才能。<br>
+  とにかく思いついたら実行するので世界に羽ばたけるタイプ。<br>
+  周囲を巻き込みながら軽やかに動く、自由で楽しげな気質。</p><br>
     `
   },
   "想": {
@@ -284,21 +421,37 @@
     心の動きとイメージが結びつき、表現に独自の厚みが生まれる。<br>
     自分の内側と穏やかに向き合いながら歩む気質。<br>
     `,
-    long: `
-    1. 中核<br>
-    感情とイメージを結びつけ、独自の世界観を構築する。<br>
-    2. 強み<br>
-    創造性、深い共感力、芸術的感性。<br>
-    3. 揺れ方<br>
-    情緒の揺れに飲まれ、現実との切り替えが難しくなる。<br>
-    4. 行動傾向・価値観<br>
-    感性、共鳴、自己物語。<br>
-    <br>
-    コメント<br>
+long: `
+<div class="section-block">
+  <div class="section-title"><span class="section-number">1.</span> 中核</div>
+  <p class="section-text">
+    感情とイメージを結びつけ、独自の世界観を構築する。
+  </p>
+
+  <div class="section-title"><span class="section-number">2.</span> 強み</div>
+  <p class="section-text">
+    創造性、深い共感力、芸術的感性。
+  </p>
+
+  <div class="section-title"><span class="section-number">3.</span> 揺れ方</div>
+  <p class="section-text">
+    情緒の揺れに飲まれ、現実との切り替えが難しくなる。
+  </p>
+
+  <div class="section-title"><span class="section-number">4.</span> 行動傾向・価値観</div>
+  <p class="section-text">
+    感性、共鳴、自己物語。
+  </p>
+
+  <div class="section-title">コメント</div>
+  <p class="section-text">
     誰よりも感情に触れているゆえの世界観、物語はとても美しい。<br>
     内面の方に意識が引き寄せられやすい。<br>
-     共感してくれる相手を求めてる。<br>
-    `
+    共感してくれる相手を求めてる。
+  </p>
+</div>
+`
+
   },
   "炎": {
     short: `
@@ -306,23 +459,47 @@
     自然と周囲を明るくし、人を巻き込む勢いを生む。<br>
     強さと繊細さが同居し、揺れそのものが個性になる。<br>
     `,
-    long: `
-    1. 中核<br>
-    情動が外へ強く放たれ、勢いを生む働き。<br>
-     2.強味 <br>
-     瞬間の感情を光のように放つ力。「今この気持ち」を起点に動き、人との距離を一気に縮める。<br>
-     3. 強み<br>
-     場を明るくする、直感で動ける、気持ちに素直。<br>
-     4. 揺れ方<br>
-     過敏に落ち込みやすくなる、自分の明るさを義務だと感じて疲れる。<br>
-     5. 行動傾向・価値観<br>
-     楽しさ、交流、リアルな反応を重視。<br>
-     <br>
-     コメント<br>
-     ノリと楽しさで生きてる人間好き。<br>
-     まぶしいけどメンタル強いわけではないので、<br>
-     たまに繊細で揺らぎやすい面を抱える人間臭さがまた魅力。
-    `
+long: `
+<div class="section">
+  <div class="item">
+    <span class="num">1.</span>
+    <span class="title">中核</span><br>
+    情動が外へ強く放たれ、勢いを生む働き。
+  </div>
+
+  <div class="item">
+    <span class="num">2.</span>
+    <span class="title">強味</span><br>
+    瞬間の感情を光のように放つ力。「今この気持ち」を起点に動き、人との距離を一気に縮める。
+  </div>
+
+  <div class="item">
+    <span class="num">3.</span>
+    <span class="title">強み</span><br>
+    場を明るくする、直感で動ける、気持ちに素直。
+  </div>
+
+  <div class="item">
+    <span class="num">4.</span>
+    <span class="title">揺れ方</span><br>
+    過敏に落ち込みやすくなる、自分の明るさを義務だと感じて疲れる。
+  </div>
+
+  <div class="item">
+    <span class="num">5.</span>
+    <span class="title">行動傾向・価値観</span><br>
+    楽しさ、交流、リアルな反応を重視。
+  </div>
+
+  <div class="comment">
+    <span class="c-title">コメント</span><br>
+    ノリと楽しさで生きてる人間好き。<br>
+    まぶしいけどメンタル強いわけではないので、<br>
+    たまに繊細で揺らぎやすい面を抱える人間臭さがまた魅力。
+  </div>
+</div>
+`
+
   },
   "進": {
     short: `
@@ -330,21 +507,41 @@
      瞬発力と臨場感を重視し、刺激のある環境で実力を発揮する。<br>
      判断が速く、行動で語る。<br>
     `,
-    long: `
-    1. 中核<br>
-    「まずやってみる」ことで世界を掴む。<br>
-    2. 強み<br>
-    反応の速さ、実行力、身体表現の豊かさ。<br>
-    3. 揺れ方<br>
-    衝動に流れて消耗する、刺激過多で荒くなる。<br>
-    4. 行動傾向・価値観<br>
-    体感・実践・臨場感を優先。<br>
-    <br>
-    コメント<br>
+long: `
+<div class="section">
+  <div class="item">
+    <span class="num">1.</span>
+    <span class="title">中核</span><br>
+    「まずやってみる」ことで世界を掴む。
+  </div>
+
+  <div class="item">
+    <span class="num">2.</span>
+    <span class="title">強み</span><br>
+    反応の速さ、実行力、身体表現の豊かさ。
+  </div>
+
+  <div class="item">
+    <span class="num">3.</span>
+    <span class="title">揺れ方</span><br>
+    衝動に流れて消耗する、刺激過多で荒くなる。
+  </div>
+
+  <div class="item">
+    <span class="num">4.</span>
+    <span class="title">行動傾向・価値観</span><br>
+    体感・実践・臨場感を優先。
+  </div>
+
+  <div class="comment">
+    <span class="c-title">コメント</span><br>
     スポーツやダンスなど、アグレッシブなイメージ。<br>
     五感と身体をフルで使った表現はときどき快刺激に流れやすく、<br>
     どこか衝動的な危なさもある。
-    `
+  </div>
+</div>
+`
+
   },
   "旋": {
     short: `
@@ -352,21 +549,41 @@
     判断が速く、芯の通った価値観にもとづいて状況を切り開く。<br>
     環境に左右されにくい独特の推進力を持つ。<br>
     `,
-    long: `
-    1. 中核<br>
-    一貫した基準で世界を切り分け、進む方向を即断する。<br>
-    2. 強み<br>
-    突破力、統率力、スピード感。<br>
-    3. 揺れ方<br>
-    苛立ちが表に出る、視野が狭くなりやすい。<br>
-    4. 行動傾向・価値観<br>
-    明確さ、目的、効率を好む。<br>
-    <br>
-    コメント<br>
+long: `
+<div class="section">
+  <div class="item">
+    <span class="num">1.</span>
+    <span class="title">中核</span><br>
+    一貫した基準で世界を切り分け、進む方向を即断する。
+  </div>
+
+  <div class="item">
+    <span class="num">2.</span>
+    <span class="title">強み</span><br>
+    突破力、統率力、スピード感。
+  </div>
+
+  <div class="item">
+    <span class="num">3.</span>
+    <span class="title">揺れ方</span><br>
+    苛立ちが表に出る、視野が狭くなりやすい。
+  </div>
+
+  <div class="item">
+    <span class="num">4.</span>
+    <span class="title">行動傾向・価値観</span><br>
+    明確さ、目的、効率を好む。
+  </div>
+
+  <div class="comment">
+    <span class="c-title">コメント</span><br>
     前に前にと物事を推し進めるカリスマ性。<br>
     突破力、判断の速さは他の追随を許さない。<br>
-    矛盾がなく、その人格は筋を一本通したようなもの。<br>
-    `
+    矛盾がなく、その人格は筋を一本通したようなもの。
+  </div>
+</div>
+`
+
   },
   "序": {
     short: `
@@ -374,21 +591,41 @@
     混乱をほどき、安定した枠組みを築くことで力を発揮する。<br>
     秩序を保つ姿勢が、静かな信頼感として現れる。<br>
     `,
-    long: `
-    1. 中核<br>
-    情報やタスクを分類し、使える形へ整える。<br>
-    2. 強み<br>
-    計画性、実行力、安定した判断。<br>
-    3. 揺れ方<br>
-    考えが固まり、視点の切り替えが難しくなる。<br>
-    4. 行動傾向・価値観<br>
-    秩序、効率、信頼できる手順。<br>
-    <br>
-    コメント<br>
+long: `
+<div class="section">
+  <div class="item">
+    <span class="num">1.</span>
+    <span class="title">中核</span><br>
+    情報やタスクを分類し、使える形へ整える。
+  </div>
+
+  <div class="item">
+    <span class="num">2.</span>
+    <span class="title">強み</span><br>
+    計画性、実行力、安定した判断。
+  </div>
+
+  <div class="item">
+    <span class="num">3.</span>
+    <span class="title">揺れ方</span><br>
+    考えが固まり、視点の切り替えが難しくなる。
+  </div>
+
+  <div class="item">
+    <span class="num">4.</span>
+    <span class="title">行動傾向・価値観</span><br>
+    秩序、効率、信頼できる手順。
+  </div>
+
+  <div class="comment">
+    <span class="c-title">コメント</span><br>
     整理、物事を並べて組み立てて本棚みたいにしてるイメージ。<br>
     効率よくて実際に実行できるものを好む。<br>
-    価値観の多様性よりも再現性や実効性だと思ってる。<br>
-    `
+    価値観の多様性よりも再現性や実効性だと思ってる。
+  </div>
+</div>
+`
+
   },
   "根": {
     short: `
@@ -396,21 +633,41 @@
     習慣によって安定を作る、落ち着いた気質。<br>
     大きな変化や突飛な発想には自然と慎重になりやすい。<br>
     `,
-    long: `
-    1. 中核<br>
-    感覚的な違いを記録し、習慣や安定を守る。<br>
-    2. 強み<br>
-    丁寧さ、継続力、温かい配慮。<br>
-    3. 揺れ方<br>
-    変化への抵抗が強まる、新しさに疲れやすい。<br>
-    4. 行動傾向・価値観<br>
-    安定、誠実、日々の積み重ね。<br>
-    <br>
-    コメント<br>
+long: `
+<div class="section">
+  <div class="item">
+    <span class="num">1.</span>
+    <span class="title">中核</span><br>
+    感覚的な違いを記録し、習慣や安定を守る。
+  </div>
+
+  <div class="item">
+    <span class="num">2.</span>
+    <span class="title">強み</span><br>
+    丁寧さ、継続力、温かい配慮。
+  </div>
+
+  <div class="item">
+    <span class="num">3.</span>
+    <span class="title">揺れ方</span><br>
+    変化への抵抗が強まる、新しさに疲れやすい。
+  </div>
+
+  <div class="item">
+    <span class="num">4.</span>
+    <span class="title">行動傾向・価値観</span><br>
+    安定、誠実、日々の積み重ね。
+  </div>
+
+  <div class="comment">
+    <span class="c-title">コメント</span><br>
     手堅く継続ってかんじ、真面目って言葉。<br>
     律儀で保守的な一面。<br>
-    新しいアイデアにはすこし苦い顔。<br>
-    `
+    新しいアイデアにはすこし苦い顔。
+  </div>
+</div>
+`
+
   },
   "脈": {
     short: `
@@ -418,21 +675,41 @@
     気遣いやサポートが自然に出るタイプ。<br>
     関係の深さや愛着を重んじ、つながりを深くしていく。<br>
     `,
-    long: `
-    1. 中核<br>
-    相手の変化を読み取り、関係を育てようとする。<br>
-    2. 強み<br>
-    気遣い、サポート力、受容性。<br>
-    3. 揺れ方<br>
-    抱え込みすぎる、他人の気持ちに引きずられる。<br>
-    4. 行動傾向・価値観<br>
-    誠実な関係、信頼、相互の安心、帰属意識。<br>
-    <br>
-    コメント<br>
+long: `
+<div class="section">
+  <div class="item">
+    <span class="num">1.</span>
+    <span class="title">中核</span><br>
+    相手の変化を読み取り、関係を育てようとする。
+  </div>
+
+  <div class="item">
+    <span class="num">2.</span>
+    <span class="title">強み</span><br>
+    気遣い、サポート力、受容性。
+  </div>
+
+  <div class="item">
+    <span class="num">3.</span>
+    <span class="title">揺れ方</span><br>
+    抱え込みすぎる、他人の気持ちに引きずられる。
+  </div>
+
+  <div class="item">
+    <span class="num">4.</span>
+    <span class="title">行動傾向・価値観</span><br>
+    誠実な関係、信頼、相互の安心、帰属意識。
+  </div>
+
+  <div class="comment">
+    <span class="c-title">コメント</span><br>
     相手の一挙手一投足に気を配る。<br>
     帰属意識が高い。<br>
-    人との関係を丁寧に保ち、深く結びつこうとする。<br>
-    `
+    人との関係を丁寧に保ち、深く結びつこうとする。
+  </div>
+</div>
+`
+
   },
   "交": {
     short: `
@@ -440,21 +717,43 @@
     集団の最適解を探る視点が強く、未来志向で行動する。<br>
     バランスを保ちながら周囲を整えながら引っ張る。<br>
     `,
-    long: `
-    1. 中核<br>
-    全体を見渡し、よりよい方向へ導くバランス感覚。<br>
-    2. 強み<br>
-    調整、共感、リーダーシップ。<br>
-    3. 揺れ方<br>
-    正しさが前に出て押しが強く見えることがある。<br>
-    4. 行動傾向・価値観<br>
-    調和、未来志向、成長。<br>
-    <br>
-    コメント<br>
+long: `
+<div class="section">
+
+  <div class="item">
+    <span class="num">1.</span>
+    <span class="title">中核</span><br>
+    全体を見渡し、よりよい方向へ導くバランス感覚。
+  </div>
+
+  <div class="item">
+    <span class="num">2.</span>
+    <span class="title">強み</span><br>
+    調整、共感、リーダーシップ。
+  </div>
+
+  <div class="item">
+    <span class="num">3.</span>
+    <span class="title">揺れ方</span><br>
+    正しさが前に出て押しが強く見えることがある。
+  </div>
+
+  <div class="item">
+    <span class="num">4.</span>
+    <span class="title">行動傾向・価値観</span><br>
+    調和、未来志向、成長。
+  </div>
+
+  <div class="comment">
+    <span class="c-title">コメント</span><br>
     未来志向が少し強く、理想や筋を重んじる気質。<br>
     そのぶん、ときどき正しさが前に出る。<br>
-    集団の最適解を自然と探るタイプ。<br>
-    `
+    集団の最適解を自然と探るタイプ。
+  </div>
+
+</div>
+`
+
   },
   "和": {
     short: `
@@ -462,21 +761,43 @@
     相手個人より、全体の空気を優先して調和を保つ。<br>
     やわらかで圧の少ない環境を望む。<br>
     `,
-    long: `
-    1. 中核<br>
-    出来事の裏側の動きを捉え、静かに調律する。<br>
-    2. 強み<br>
-    洞察、安定感、柔らかい存在感。<br>
-    3. 揺れ方<br>
-    意見を飲み込みすぎて、自己が薄れる。<br>
-    4. 行動傾向・価値観<br>
-    平和、静けさ、長い目線。<br>
-    <br>
-    コメント<br>
+long: `
+<div class="section">
+
+  <div class="item">
+    <span class="num">1.</span>
+    <span class="title">中核</span><br>
+    出来事の裏側の動きを捉え、静かに調律する。
+  </div>
+
+  <div class="item">
+    <span class="num">2.</span>
+    <span class="title">強み</span><br>
+    洞察、安定感、柔らかい存在感。
+  </div>
+
+  <div class="item">
+    <span class="num">3.</span>
+    <span class="title">揺れ方</span><br>
+    意見を飲み込みすぎて、自己が薄れる。
+  </div>
+
+  <div class="item">
+    <span class="num">4.</span>
+    <span class="title">行動傾向・価値観</span><br>
+    平和、静けさ、長い目線。
+  </div>
+
+  <div class="comment">
+    <span class="c-title">コメント</span><br>
     悟ったような穏やかさ。<br>
     優しいように見えて、実は相手より場の空気そのものを感じている。<br>
-     相手個人より、場全体の温度を見てしまう。<br>
-    `,
+    相手個人より、場全体の温度を見てしまう。
+  </div>
+
+</div>
+`
+
   },
   "透": {
     short: `
@@ -484,21 +805,43 @@
     抽象的な視点に入り込みやすく、表面的な刺激には流されにくい。<br>
      静かに考察し続ける独特の落ち着きがある。<br>
     `,
-    long: `
-    1. 中核<br>
-    現象の背後のパターンや必然を読み解く。<br>
-    2. 強み<br>
-    洞察、分析、距離感のある視点。<br>
-    3. 揺れ方<br>
-    現実感が薄れ、思考の世界に沈む。<br>
-    4. 行動傾向・価値観<br>
-    理解、構造、意味。<br>
-    <br>
-    コメント<br>
-    誰よりもメタ視点でどこか浮世離れした思考の高さがある。 <br>
+long: `
+<div class="section">
+
+  <div class="item">
+    <span class="num">1.</span>
+    <span class="title">中核</span><br>
+    現象の背後のパターンや必然を読み解く。
+  </div>
+
+  <div class="item">
+    <span class="num">2.</span>
+    <span class="title">強み</span><br>
+    洞察、分析、距離感のある視点。
+  </div>
+
+  <div class="item">
+    <span class="num">3.</span>
+    <span class="title">揺れ方</span><br>
+    現実感が薄れ、思考の世界に沈む。
+  </div>
+
+  <div class="item">
+    <span class="num">4.</span>
+    <span class="title">行動傾向・価値観</span><br>
+    理解、構造、意味。
+  </div>
+
+  <div class="comment">
+    <span class="c-title">コメント</span><br>
+    誰よりもメタ視点でどこか浮世離れした思考の高さがある。<br>
     心ここにあらずみたいに見えるのはたいてい考え事をしているとき。<br>
     個人的な欲求にあまり自覚がない。
-    `
+  </div>
+
+</div>
+`
+
   },
   "究": {
     short: `
@@ -506,21 +849,43 @@
 理由や仕組みを知ることが自然体で、好奇心が尽きない。<br>
 他人から向けられる目にはあまり興味を示さない。<br>
     `,
-    long:`
-     1. 中核<br>
- 「なぜ」「どうして」を追い、概念を体系化する。<br>
-2. 強み<br>
- 論理、独創性、深い探究心。<br>
-3. 揺れ方<br>
- 考えすぎて動けない、社会的距離が空く。<br>
-4. 行動傾向・価値観<br>
- 知性、自由、面白さ。<br>
-<br>
-コメント<br>
-なんで、どうして、こう考えると面白そうなど考えることが大好き。<br>
-関われば面白いタイプ、関われば。<br>
-良くも悪くも対人印象に興味がないので嫉妬とか執着などの感情とは遠い。<br>
-     `
+long: `
+<div class="section">
+
+  <div class="item">
+    <span class="num">1.</span>
+    <span class="title">中核</span><br>
+    「なぜ」「どうして」を追い、概念を体系化する。
+  </div>
+
+  <div class="item">
+    <span class="num">2.</span>
+    <span class="title">強み</span><br>
+    論理、独創性、深い探究心。
+  </div>
+
+  <div class="item">
+    <span class="num">3.</span>
+    <span class="title">揺れ方</span><br>
+    考えすぎて動けない、社会的距離が空く。
+  </div>
+
+  <div class="item">
+    <span class="num">4.</span>
+    <span class="title">行動傾向・価値観</span><br>
+    知性、自由、面白さ。
+  </div>
+
+  <div class="comment">
+    <span class="c-title">コメント</span><br>
+    なんで、どうして、こう考えると面白そうなど考えることが大好き。<br>
+    関わればがちで面白いタイプ、関われば。<br>
+    良くも悪くも対人印象に興味がないので嫉妬とか執着などの感情とはほど遠い。
+  </div>
+
+</div>
+`
+
   }
 };
 
@@ -545,16 +910,19 @@ const detail = document.getElementById("detail");
 detail.innerHTML = top4
   .map(item => `
     <div class="detail-block">
-      <h3>${item.label}</h3>
-      <p>${descriptions[item.label].short}</p>
+      <h3><span class="section-title">${item.label}</span></h3>
+
+      <p class="desc-text">${descriptions[item.label].short}</p>
+
 
       <div class="more-box" onclick="toggleDetail(this)">
         ▼ もっと読む
       </div>
 
-      <div class="long-text" style="display:none;">
-        ${descriptions[item.label].long}
-      </div>
+      <div class="long-text desc-text" style="display:none;">
+  ${descriptions[item.label].long}
+</div>
+
     </div>
   `)
   .join("");
