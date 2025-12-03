@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>円性格診断</title>
+  <title>円環性格診断</title>
   <style>
     body {
   max-width: 800px;
@@ -22,15 +22,7 @@ h1 {
     position: relative;
   padding-bottom: 8px;
 }
-h1::after {
-  content: "";
-  display: block;
-  width: 60px;
-  height: 3px;
-  background-color: #6a9bb8;
-  border-radius: 5px;
-  margin-top: 8px;
-}
+
 
 
     .question {
@@ -243,11 +235,108 @@ h1::after {
   margin-bottom: 12px;
 }
 
+/* ヘッダー全体 */
+.site-header {
+  padding: 18px 20px;
+}
+
+/* タイトル横並び（アイコン + テキスト） */
+.site-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;              /* アイコンとテキストの距離 */
+  font-size: 20px;
+  font-weight: 700;
+  color: #676767;            /* デフォルトの文字色（SVGに反映される） */
+  margin: 0;
+  font-family: 'Noto Sans JP', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* SVG アイコンのサイズ調整（レスポンシブ） */
+.circle-icon {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  display: block;
+  transition: transform .28s cubic-bezier(.2,.9,.3,1), opacity .18s;
+  opacity: 0.98;
+}
+
+/* 輪（外円）を薄くする */
+.circle-icon .ci-ring {
+  stroke: rgba(0,0,0,0.14);  /* 透過で柔らかく */
+}
+
+/* 目盛り線はやや濃いめに（でも主張しすぎない） */
+.circle-icon .ci-ticks line {
+  stroke: rgba(0,0,0,0.28);
+  stroke-linecap: round;
+}
+
+/* ホバーでほんのちょい回転＆強調（過剰演出は避ける） */
+.site-title:hover .circle-icon {
+  transform: rotate(9deg) scale(1.03);
+  opacity: 1;
+}
+
+/* ダークモード対応（prefers-color-scheme） */
+@media (prefers-color-scheme: dark) {
+  .site-title { color: #EEE; }
+  .circle-icon .ci-ring { stroke: rgba(255,255,255,0.08); }
+  .circle-icon .ci-ticks line { stroke: rgba(255,255,255,0.26); }
+}
+
+/* 小さな画面でアイコンを縮める */
+@media (max-width: 420px) {
+  .site-title { font-size: 18px; gap: 8px; }
+  .circle-icon { width: 22px; height: 22px; }
+}
+
+.site-header::after {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 3px;
+  background-color: #969696;
+  border-radius: 5px;
+  margin-top: 8px;
+}
 
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+
+  <header class="site-header">
+  <h1 class="site-title">
+    <!-- inline SVG: 12分割の円アイコン -->
+    <svg class="circle-icon" viewBox="0 0 48 48" width="28" height="28" role="img" aria-labelledby="circleIconTitle">
+      <title id="circleIconTitle">円環モデルのアイコン</title>
+      <circle cx="24" cy="24" r="20" class="ci-ring" fill="none" stroke="currentColor" stroke-width="1"/>
+      <g class="ci-ticks" transform="translate(24,24)">
+        <!-- 12個の短い線を配置（0〜11） -->
+        <!-- 各 line は上向き（0度）基準で配列、回転で位置を変える -->
+        <line x1="0" y1="-16" x2="0" y2="-12" stroke="currentColor" stroke-width="1" transform="rotate(0)"/>
+        <line x1="0" y1="-16" x2="0" y2="-12" stroke="currentColor" stroke-width="1" transform="rotate(30)"/>
+        <line x1="0" y1="-16" x2="0" y2="-12" stroke="currentColor" stroke-width="1" transform="rotate(60)"/>
+        <line x1="0" y1="-16" x2="0" y2="-12" stroke="currentColor" stroke-width="1" transform="rotate(90)"/>
+        <line x1="0" y1="-16" x2="0" y2="-12" stroke="currentColor" stroke-width="1" transform="rotate(120)"/>
+        <line x1="0" y1="-16" x2="0" y2="-12" stroke="currentColor" stroke-width="1" transform="rotate(150)"/>
+        <line x1="0" y1="-16" x2="0" y2="-12" stroke="currentColor" stroke-width="1" transform="rotate(180)"/>
+        <line x1="0" y1="-16" x2="0" y2="-12" stroke="currentColor" stroke-width="1" transform="rotate(210)"/>
+        <line x1="0" y1="-16" x2="0" y2="-12" stroke="currentColor" stroke-width="1" transform="rotate(240)"/>
+        <line x1="0" y1="-16" x2="0" y2="-12" stroke="currentColor" stroke-width="1" transform="rotate(270)"/>
+        <line x1="0" y1="-16" x2="0" y2="-12" stroke="currentColor" stroke-width="1" transform="rotate(300)"/>
+        <line x1="0" y1="-16" x2="0" y2="-12" stroke="currentColor" stroke-width="1" transform="rotate(330)"/>
+      </g>
+    </svg>
+
+    <span class="title-text">円環性格診断</span>
+  </h1>
+</header>
+
+
+
   <h1>はじまりの12問</h1>
 
   <!-- 12質問 -->
@@ -347,30 +436,60 @@ h1::after {
       data: {
         labels:["翔", "想","炎", "進", "旋", "序", "根","脈", "交", "和", "透", "究"],
         datasets: [
-          {
-            label: "",
-            data: getValues(),
-            fill: true,
-            borderWidth: 2
-          }
+{
+  label: "",
+  data: getValues(),
+  fill: true,
+
+  // 図形の輪郭線
+  borderColor: 'rgba(0,0,0,0.15)',   // 超薄い線
+  borderWidth: 1,
+
+  // 中の塗りつぶし
+  backgroundColor: 'rgba(0,0,0,0.10)',  // これで「消えそうな図形」になる
+
+  // 点は全部消す
+  pointRadius: 0,
+  pointHoverRadius: 0
+}
+
         ]
       },
       options: {
         scales: {
-          r: {
-            suggestedMin: 0,
-            suggestedMax: 100,
+r: {
+  suggestedMin: 0,
+  suggestedMax: 100,
 
-            ticks : {
-              display : false
-            },
+  // 内側の蜘蛛の巣ゼロ
+grid: {
+  display: true,
+  color: 'rgba(0,0,0,0.03)',   // これが“ほのか”
+  lineWidth: 1
+},
 
-            pointLabels : {
-              font: {
-                size : 30
-              }
-            }
-          }
+
+angleLines: {
+  display: true,
+  color: 'rgba(0,0,0,0.03)',  // こっちは少し濃くてもいい
+  lineWidth: 1
+},
+
+
+  // 数字いらない
+  ticks: {
+    display: false
+  },
+
+  // ラベルだけ残す
+  pointLabels: {
+    font: {
+      size: 22
+    },
+    color: 'rgba(0,0,0,0.6)'
+  }
+}
+
         }
       }
     });
